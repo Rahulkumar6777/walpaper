@@ -9,7 +9,7 @@
         body {
             font-family: sans-serif;
             margin: 0;
-            background-color: #2d3137; /* Changed background color */
+            background-color: #2d3137;
             color: #fff;
         }
 
@@ -26,6 +26,7 @@
             margin: auto;
             overflow: visible !important;
             display: flow-root;
+            margin-top: 20px;
         }
 
         header {
@@ -98,7 +99,6 @@
             grid-gap: 30px;
         }
 
-        /* Ensure all wallpapers fit within a 16:9 aspect ratio */
         .wallpaper {
             position: relative;
             padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
@@ -117,9 +117,9 @@
         }
 
         .wallpaper .download-button {
-            position: relative; /* Changed from absolute */
+            position: relative;
             display: block;
-            margin: 10px auto; /* Centered and added margin */
+            margin: 10px auto;
             background-color: #555;
             padding: 5px 10px;
             border: none;
@@ -224,9 +224,9 @@
                         wallpapersGrid.append(`
                             <div class="wallpaper" data-category="${wallpaper.category}">
                                 <a href="${wallpaper.image}" target="_blank">
-                                    <img src="${wallpaper.thumbnail}" alt="${wallpaper.title}">
+                                    <img src="${wallpaper.thumbnail}" alt="${wallpaper.title || 'Wallpaper'}">
                                 </a>
-                                <button class="download-button" data-url="${wallpaper.image}">Download</button>
+                                <button class="download-button" data-url="${wallpaper.download}">Download</button>
                             </div>
                         `);
                     });
@@ -245,7 +245,7 @@
             // Download button functionality
             $(document).on('click', '.download-button', function() {
                 let url = $(this).data('url');
-                window.open(url, '_blank');
+                window.location.href = url; // Start download
             });
         });
     </script>
